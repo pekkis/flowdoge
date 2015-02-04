@@ -5,7 +5,35 @@ module.exports = function (grunt) {
     require('jit-grunt')(grunt);
 
     grunt.initConfig({
+
         pkg: grunt.file.readJSON('package.json'),
+
+        'http-server': {
+
+            'dev': {
+
+                // the server root directory
+                root: 'web',
+
+                port: 9999,
+                // port: function() { return 8282; }
+
+                host: "127.0.0.1",
+
+                cache: 0,
+                showDir : true,
+                autoIndex: true,
+
+                // server default file extension
+                ext: "html",
+
+                // run in parallel with other tasks
+                runInBackground: false
+
+            }
+
+        },
+
 
         webpack: {
 

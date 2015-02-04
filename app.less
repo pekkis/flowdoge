@@ -1,5 +1,23 @@
 body {
 
-    background-color: #FF00FF;
+    background-color: rgb(255,255,255);
 
+}
+
+.tussi-enter {
+  opacity: 0.01;
+  transition: opacity .5s ease-in;
+}
+
+.tussi-enter.tussi-enter-active {
+  opacity: 1;
+}
+
+.tussi-leave {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.tussi-leave.tussi-leave-active {
+  opacity: 0.01;
 }
