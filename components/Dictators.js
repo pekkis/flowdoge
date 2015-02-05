@@ -11,18 +11,15 @@ var Dictators = React.createClass({
 
     render: function() {
         
-        console.log(this.props);
-
         return (
             <Row>
-                <ReactCSSTransitionGroup transitionName="tussi">
+                
                 {this.props.dictators.map(function(d) {
 
-                    return (<Dictator data={d} />);
+                    return (<Dictator key={d.uuid} data={d} />);
 
                 }).toArray()}
-                </ReactCSSTransitionGroup>
-
+                
             </Row>
         );
     },

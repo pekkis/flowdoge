@@ -6,6 +6,9 @@ var DictatorFilter = React.createClass({
         return (
             <div>
                 <input onChange={this.props.onChange} />
+
+                <button onClick={this.props.onLusso}>Lusso</button>
+
             </div>
         );
     }

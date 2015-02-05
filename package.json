@@ -3,9 +3,13 @@
   "version": "7.0.0",
   "dependencies": {
     "autoprefixer-loader": "^1.1.0",
+    "backbone": "^1.1.2",
     "bluebird": "^2.9.6",
     "bootstrap-jquery": "^3.3.2",
     "css-loader": "^0.9.1",
+    "flux": "^2.0.1",
+    "flux-react": "^2.6.1",
+    "fluxxor": "^1.5.2",
     "grunt": "^0.4.5",
     "grunt-http-server": "^1.1.0",
     "grunt-webpack": "^1.0.8",

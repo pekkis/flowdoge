@@ -7,43 +7,35 @@ var Col = require('react-bootstrap/Col');
 var Row = require('react-bootstrap/Row');
 var Dictators = require('./Dictators');
 var DictatorFilter = require('./DictatorFilter');
+var DictatorStore = require('../stores/DictatorStore');
+
+var Fluxxor = require('fluxxor');
+var FluxMixin = Fluxxor.FluxMixin(React);
+var StoreWatchMixin = Fluxxor.StoreWatchMixin;
 
 var DictatorRanking = React.createClass({
 
-    mixins: [ImmutableRenderMixin],
-
+    mixins: [FluxMixin, StoreWatchMixin("DictatorStore"), ImmutableRenderMixin],
+    
     getInitialState: function() {
         return {
-            'dictators': Immutable.List([]),
             'filter': ''
         };
     },
 
-    componentDidMount: function() {
-
-        DictatorService.findAll().then(function(dictators) {
-
-            dictators = Immutable.List(dictators).filter(function(d) {
-                return d.canonicalRanking;
-            }).sort(function(a, b) {
-                return (a.canonicalRanking > b.canonicalRanking) ? 1: -1;
-            });
-
-
-            this.setState({
-                'dictators': dictators
-            })
-            
-        }.bind(this));
-
+    getStateFromFlux: function() {
+        var flux = this.getFlux();
+        return flux.store("DictatorStore").getState();
     },
 
     render: function() {
         
+        console.log(this.state);
+
         return (
             
             <Grid>
-                <DictatorFilter onChange={this.onChange} />
+                <DictatorFilter onChange={this.onChange} onLusso={this.onLusso} />
                 <Dictators dictators={this.getTheDictators()} />
             </Grid>
         );
@@ -51,8 +43,6 @@ var DictatorRanking = React.createClass({
     },
 
     getTheDictators: function() {
-
-        console.log('getting dikus');
 
         var self = this;
         return this.state.dictators.filter(function(dictator) {
@@ -66,9 +56,13 @@ var DictatorRanking = React.createClass({
         this.setState({
             'filter': evt.target.value
         });
+    },
+
+    onLusso: function() {
+
+        console.log("LUSSO");
+        
     }
-
-
 
 });
 
