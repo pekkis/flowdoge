@@ -1,6 +1,5 @@
 var React = require('react');
 var Immutable = require('immutable');
-var DictatorService = require('../services/DictatorService.js');
 var ImmutableRenderMixin = require('react-immutable-render-mixin')
 var Grid = require('react-bootstrap/Grid');
 var Col = require('react-bootstrap/Col');
@@ -8,8 +7,6 @@ var Row = require('react-bootstrap/Row');
 var Threads = require('./Threads');
 var Thread = require('./Thread');
 var Message = require('./Message');
-
-
 var Fluxxor = require('fluxxor');
 var FluxMixin = Fluxxor.FluxMixin(React);
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
