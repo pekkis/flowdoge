@@ -4,20 +4,29 @@ body {
 
 }
 
-.tussi-enter {
-  opacity: 0.01;
-  transition: opacity .5s ease-in;
+header {
+    background-color: rgb(255, 125, 125);
 }
 
-.tussi-enter.tussi-enter-active {
-  opacity: 1;
+.users {
+    margin: 2em 0;
 }
 
-.tussi-leave {
-  opacity: 1;
-  transition: opacity .5s ease-in;
+.threads {
+    background-color: rgb(200, 200, 200);
+
+    .current {
+        background-color: rgb(0,0,0);
+        color: rgb(255,255,255);
+    }
 }
 
-.tussi-leave.tussi-leave-active {
-  opacity: 0.01;
+.messages {
+    padding: 1em;
+
+    .message {
+        margin: 0.33em;
+        background-color: #CCC;
+
+    }
 }

@@ -1,5 +1,8 @@
 var constants = {
-  LOAD_DICTATORS: "LOAD_DICTATORS"
+  CONNECT: 'CONNECT',
+  JOIN: 'JOIN',
+  CHANGE_THREAD: 'CHANGE_THREAD',
+  POST_MESSAGE: 'POST_MESSAGE'
 };
 
 module.exports = constants;

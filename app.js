@@ -14,8 +14,8 @@ var DefaultRoute = Router.DefaultRoute;
 var RouteHandler = Router.RouteHandler;
 var $ = require('jquery');
 
-var DictatorRankingApp = require('./components/DictatorRankingApp');
-var DictatorRanking = require('./components/DictatorRanking');
+var FlowDogeApp = require('./components/FlowDogeApp');
+var FlowDoge = require('./components/FlowDoge');
 var NotFound = require('./components/NotFound');
 
 var Fluxxor = require('Fluxxor');
@@ -24,21 +24,16 @@ require('bootstrap-jquery/dist/js/npm.js');
 
 
 var constants = require('./constants');
-var DictatorStore = require('./stores/DictatorStore');
+var UserStore = require('./stores/UserStore');
+var ThreadStore = require('./stores/ThreadStore');
+var MessageStore = require('./stores/MessageStore');
 
-var actions = {
-  loadDictators: function() {
-    
-    $.get('http://diktaattoriporssi.com/api/dictator').then(function(dictators) {
-        this.dispatch(constants.LOAD_DICTATORS, { 'dictators': dictators });    
-    }.bind(this));
-
-    
-  }
-};
+var actions = require('./actions');
 
 var stores = {
-  DictatorStore: new DictatorStore()
+  UserStore: new UserStore(),
+  ThreadStore: new ThreadStore(),
+  MessageStore: new MessageStore()
 };
 
 var flux = new Fluxxor.Flux(stores, actions);
@@ -49,10 +44,9 @@ flux.on("change", function(type, payload) {
   }
 });
 
-
 var routes = (
-  <Route handler={DictatorRankingApp} path="/">
-    <DefaultRoute handler={DictatorRanking}/>
+  <Route handler={FlowDogeApp} path="/">
+    <DefaultRoute handler={FlowDoge}/>
     <NotFoundRoute handler={NotFound}/>
   </Route>
 );
