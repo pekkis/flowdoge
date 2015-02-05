@@ -55,7 +55,7 @@ var FlowDogeApp = React.createClass({
         
         var self = this;
 
-        var socket = require('socket.io-client')('http://dr-kobros.com:3000');
+        var socket = require('socket.io-client')('http://dr-kobros.com:3003');
         
         socket.on('join', function(payload) {
             

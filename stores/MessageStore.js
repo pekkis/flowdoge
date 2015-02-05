@@ -1,5 +1,5 @@
 var Fluxxor = require('fluxxor');
-var Immutable = require('Immutable');
+var Immutable = require('immutable');
 
 var constants = require('../constants');
 

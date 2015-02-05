@@ -18,7 +18,7 @@ var FlowDogeApp = require('./components/FlowDogeApp');
 var FlowDoge = require('./components/FlowDoge');
 var NotFound = require('./components/NotFound');
 
-var Fluxxor = require('Fluxxor');
+var Fluxxor = require('fluxxor');
 
 require('bootstrap-jquery/dist/js/npm.js');
 
