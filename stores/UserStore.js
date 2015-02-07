@@ -38,7 +38,9 @@ var UserStore = Fluxxor.createStore({
 
   onJoin: function(payload) {
 
-    this.users = this.users.push({nick: payload.nick});
+    console.log(payload, 'JOIN payload');
+
+    this.users = Immutable.List(payload.users);
     this.emit('change');
   },
 

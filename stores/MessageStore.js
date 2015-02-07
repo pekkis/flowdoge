@@ -7,44 +7,28 @@ var MessageStore = Fluxxor.createStore({
   
   initialize: function() {
     
-    this.messages = {
-
-      'thread2': Immutable.List([]),
-      'thread1': Immutable.List([
-        {
-          'nick': 'Joszef_Pap',
-          'message': 'Mitä hemmettiä me niille keksitään?'
-        },
-        {
-          'nick': 'Tenhunen',
-          'message': 'Turvaamistoimi!!!'
-        }
-      ]),
-    };
+    this.messages = Immutable.List();
     
     this.bindActions(
-      constants.POST_MESSAGE, this.onPostMessage
+      constants.POST_MESSAGE, this.onPostMessage,
+      constants.LOAD_MESSAGES, this.onLoadMessages
     );
     
   },
 
-  onLoad: function(payload) {
-
-    console.log(data, 'DATA');
-   
-    this.users = Immutable.List(users);
-    this.emit("change");
-  },
-
   getMessages: function(thread) {
-    return this.messages[thread];
+    return this.messages.filter(function(message) {
+      return (message.thread === thread);
+    });
   },
 
   onPostMessage: function(payload) {
-    
-    console.log(payload, 'payload');
+    this.messages = this.messages.push(payload.message);
+    this.emit("change");
+  },
 
-    this.messages[payload.thread] = this.messages[payload.thread].push(payload.message);
+  onLoadMessages: function(payload) {
+    this.messages = Immutable.List(payload.messages);
     this.emit("change");
   }
   

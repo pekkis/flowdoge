@@ -11,6 +11,8 @@ var Fluxxor = require('fluxxor');
 var FluxMixin = Fluxxor.FluxMixin(React);
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
 
+
+
 var FlowDoge = React.createClass({
 
     mixins: [FluxMixin, StoreWatchMixin("ThreadStore", "MessageStore")],
@@ -31,11 +33,7 @@ var FlowDoge = React.createClass({
     },
 
     render: function() {
-
-        console.log('rendering');
-        console.log(this.state.messages.toArray());
         
-
         return (
 
             <Row className="doge">
@@ -64,13 +62,17 @@ var FlowDoge = React.createClass({
     postMessage: function(messageTxt) {
         
         var message = {
+            thread: this.state.currentThread,
             nick: this.props.nick,
             message: messageTxt
         };
 
+
+        // Todo fucktor.
         this.getFlux().store('UserStore').getSocket().emit(
             'message',
-            {'thread': this.state.currentThread, 'message': message}
+                message
+           
         );
     }
 

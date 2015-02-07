@@ -14,7 +14,7 @@ var Nick = React.createClass({
                         
                         <h1>gimme nickname</h1>    
 
-                        <input ref="nick" type="text" />
+                        <input ref="nick" type="text"  />
                         <button onClick={this.setNick}>Submit</button>
                     </Col>
                 </Row>
