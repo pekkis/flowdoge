@@ -11,18 +11,20 @@ var Nick = React.createClass({
             <Grid>
                 <Row>
                     <Col md={12}>
-                        
-                        <h1>gimme nickname</h1>    
+                        <form onSubmit={this.setNick}>
+                            <h1>gimme nickname</h1>
 
-                        <input ref="nick" type="text"  />
-                        <button onClick={this.setNick}>Submit</button>
+                            <input ref="nick" type="text" autoFocus />
+                            <button type="submit">Submit</button>
+                        </form>
                     </Col>
                 </Row>
             </Grid>
         );
     },
 
-    setNick: function() {
+    setNick: function(event) {
+        event.preventDefault();
         this.props.onChange(this.refs.nick.getDOMNode().value);
     }
 
