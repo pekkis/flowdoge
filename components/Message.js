@@ -8,15 +8,19 @@ var Message = React.createClass({
         return (
         
             <Col md={12}>
-                <input ref="message" type="text" />
-                <button onClick={this.post}>Louskuta</button>
+                <form onSubmit={this.post}>
+                    <input ref="message" type="text" autoFocus />
+                    <button type="submit">Louskuta</button>
+                </form>
             </Col>
     
         );
     },
 
-    post: function() {
+    post: function(event) {
+        event.preventDefault();
         this.props.onPost(this.refs.message.getDOMNode().value);
+        this.refs.message.getDOMNode().value = '';
     }
 
 
