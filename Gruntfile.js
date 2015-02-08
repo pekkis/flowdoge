@@ -60,6 +60,14 @@ module.exports = function (grunt) {
                     {
                         test: /\.(jpe?g|png|gif|svg)$/i,
                         loaders: ['image?optimizationLevel=7&interlaced=true']
+                    },
+                    {
+                        test: /\.(woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                        loader: "url-loader?limit=10000&mimetype=application/font-woff"
+                    },
+                    {
+                        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                        loader: "file-loader"
                     }
                 ],
                

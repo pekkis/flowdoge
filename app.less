@@ -1,3 +1,8 @@
+@import "node_modules/bootstrap/less/bootstrap.less";
+@import "./variables.less";
+
+@padding: .33em;
+
 body {
 
     background-color: rgb(255,255,255);
@@ -15,17 +20,28 @@ header {
 .threads {
     background-color: rgb(200, 200, 200);
 
-    .current {
-        background-color: rgb(0,0,0);
-        color: rgb(255,255,255);
+    .thread {
+
+        padding: @padding;
+
+
+        &.current {
+            background-color: rgb(0,0,0);
+            color: rgb(255,255,255);
+        }
+
+
     }
+
 }
 
 .messages {
-    padding: 1em;
+    padding: 0;
 
     .message {
-        margin: 0.33em;
+        margin: .25em 0 .25em 0;
+        padding: @padding;
+
         background-color: #CCC;
 
     }
