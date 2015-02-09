@@ -11,11 +11,14 @@ var Fluxxor = require('fluxxor');
 var FluxMixin = Fluxxor.FluxMixin(React);
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
 
+var Router = require('react-router');
+var ActiveUsers = require('./ActiveUsers');
+
 
 
 var FlowDoge = React.createClass({
 
-    mixins: [FluxMixin, StoreWatchMixin("ThreadStore", "MessageStore")],
+    mixins: [Router.State, FluxMixin, StoreWatchMixin("ThreadStore", "MessageStore", "UserStore")],
     
     getInitialState: function() {
         return {
@@ -26,6 +29,7 @@ var FlowDoge = React.createClass({
     getStateFromFlux: function() {
         var flux = this.getFlux();
         return {
+            'nick': flux.store("UserStore").getNick(),
             'threads': flux.store("ThreadStore").getThreads(),
             'currentThread': flux.store('ThreadStore').getCurrentThread(),
             'messages': flux.store('MessageStore').getMessages(flux.store('ThreadStore').getCurrentThread())
@@ -33,19 +37,22 @@ var FlowDoge = React.createClass({
     },
 
     render: function() {
-        
+
         return (
 
             <Row className="doge">
+
+                <ActiveUsers />
+
                 <Col md={4}>
                     <Threads threads={this.state.threads} current={this.state.currentThread} onClick={this.changeThread} />
                 </Col>
 
                 <Col md={8}>
-                    <Thread messages={this.state.messages} />
+                    <Thread nick={this.state.nick} messages={this.state.messages} />
                 </Col>
 
-                <Message onPost={this.postMessage}/>
+                <Message nick={this.state.nick} thread={this.state.currentThread} onPost={this.postMessage}/>
 
             </Row>
 
@@ -62,8 +69,8 @@ var FlowDoge = React.createClass({
     postMessage: function(messageTxt) {
         
         var message = {
-            thread: this.state.currentThread,
-            nick: this.props.nick,
+            thread: this.state.currentThread.id,
+            nick: this.getFlux().store('UserStore').nick,
             message: messageTxt
         };
 
@@ -72,8 +79,13 @@ var FlowDoge = React.createClass({
         this.getFlux().store('UserStore').getSocket().emit(
             'message',
                 message
-           
         );
+    },
+
+    componentDidMount: function() {
+        
+        this.getFlux().actions.user.connect(this.getParams().nick);
+
     }
 
     

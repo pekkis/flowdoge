@@ -7,18 +7,22 @@ var Message = React.createClass({
     render: function() {
         return (
         
-            <Col md={12}>
-                <form onSubmit={this.post}>
-                    <input ref="message" type="text" autoFocus />
-                    <button type="submit">Louskuta</button>
-                </form>
-            </Col>
+                <div id="message">
+                    <form onSubmit={this.post}>
+                        <input className="form-control" ref="message" type="text" autoFocus placeholder={this.getPlaceholder()} />
+                    </form>
+                </div>
     
         );
     },
 
-    post: function(event) {
-        event.preventDefault();
+    getPlaceholder: function() {
+        return this.props.nick + ", louskuttele kanavalla '" + this.props.thread.name + "'";
+    },
+
+    post: function(evt) {
+        evt.preventDefault();
+
         this.props.onPost(this.refs.message.getDOMNode().value);
         this.refs.message.getDOMNode().value = '';
     }

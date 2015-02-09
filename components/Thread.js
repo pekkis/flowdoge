@@ -1,5 +1,8 @@
 var React = require('react');
 
+var Fluxxor = require('fluxxor');
+var FluxMixin = Fluxxor.FluxMixin(React);
+
 var Thread = React.createClass({
 
     render: function() {
@@ -16,6 +19,17 @@ var Thread = React.createClass({
 
             </div>
         );
+    },
+
+    componentDidUpdate: function() {
+
+        if (lastMessage = this.props.messages.last()) {
+            if (this.props.nick === lastMessage.nick) {
+                window.scrollTo(0, document.body.scrollHeight);
+            }
+
+        }
+
     }
 
 });

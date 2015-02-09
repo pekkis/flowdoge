@@ -18,7 +18,7 @@ var ThreadStore = Fluxxor.createStore({
       }
     ]);
 
-    this.currentThread = 'thread2';
+    this.currentThread = this.threads.get(1);
     
     this.bindActions(
       constants.CHANGE_THREAD, this.changeThread
@@ -28,9 +28,7 @@ var ThreadStore = Fluxxor.createStore({
 
   changeThread: function(data) {
 
-    console.log(data, 'DATA');
-
-    this.currentThread = data.thread.id;
+    this.currentThread = data.thread;
    
     this.emit("change");
   },

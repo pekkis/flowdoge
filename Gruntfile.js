@@ -4,6 +4,8 @@ module.exports = function (grunt) {
     'use strict';
     require('jit-grunt')(grunt);
 
+    grunt.loadNpmTasks('grunt-text-replace');
+
     grunt.initConfig({
 
         pkg: grunt.file.readJSON('package.json'),
@@ -38,6 +40,8 @@ module.exports = function (grunt) {
         webpack: {
 
           options: {
+
+            storeStatsTo: "stats",
 
             entry: "./app.js",
    
@@ -89,6 +93,14 @@ module.exports = function (grunt) {
             watch: false,
             keepalive: false,
 
+            options: {
+                output: {
+                    path: "web",
+                    publicPath: "/",
+                    filename: "app.[hash].js",
+                }
+            },
+
             plugins: [
                 new webpack.optimize.UglifyJsPlugin({
                     'mangle': false,
@@ -106,11 +118,26 @@ module.exports = function (grunt) {
             
           }
          
-        }
+        },
+
+        replace: {
+  revision: {
+    src: ['web/index.html'],             // source files array (supports minimatch)
+    dest: 'web/',             // destination directory or file
+    replacements: [
+    {
+      from: /app(\.[a-z0-9]+)?\.js?/gi,      // regex replacement ('Fooo' to 'Mooo')
+      to: 'app.<%= stats.hash %>.js'
+    }
+    ]
+  }
+}
+
+
         
     });
 
-    grunt.registerTask('default', ['webpack:prod']);
+    grunt.registerTask('default',  ['webpack:prod', 'replace']);
     grunt.registerTask('dev', ['webpack:dev']);
 
 };

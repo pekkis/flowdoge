@@ -12,7 +12,7 @@ var Threads = React.createClass({
 
                     var classes = cx({
                         'thread': true,
-                        'current': t.id == this.props.current
+                        'current': t.id == this.props.current.id
                     });
 
                     return (<div className={classes}>
@@ -25,7 +25,8 @@ var Threads = React.createClass({
         );
     },
 
-    click: function(thread) {
+    click: function(thread, evt) {
+        evt.preventDefault();
         this.props.onClick(thread);
     }
 

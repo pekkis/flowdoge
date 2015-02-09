@@ -18,7 +18,7 @@ var MessageStore = Fluxxor.createStore({
 
   getMessages: function(thread) {
     return this.messages.filter(function(message) {
-      return (message.thread === thread);
+      return (message.thread === thread.id);
     });
   },
 

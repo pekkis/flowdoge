@@ -3,7 +3,11 @@ var Col = require('react-bootstrap/Col');
 var Row = require('react-bootstrap/Row');
 var Grid = require('react-bootstrap/Grid');
 
+var Router = require('react-router');
+
 var Nick = React.createClass({
+
+    mixins: [Router.Navigation],
 
     render: function() {
         return (
@@ -23,9 +27,9 @@ var Nick = React.createClass({
         );
     },
 
-    setNick: function(event) {
-        event.preventDefault();
-        this.props.onChange(this.refs.nick.getDOMNode().value);
+    setNick: function(evt) {
+        evt.preventDefault();
+        this.transitionTo('doge', {'nick': this.refs.nick.getDOMNode().value});
     }
 
 });
