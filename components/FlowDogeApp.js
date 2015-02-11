@@ -2,6 +2,8 @@ var React = require('react');
 var Router = require('react-router');
 var RouteHandler = Router.RouteHandler;
 var Grid = require('react-bootstrap/Grid');
+var Nav = require('react-bootstrap/Nav');
+var Navbar = require('react-bootstrap/Navbar');
 
 var Fluxxor = require('fluxxor');
 var FluxMixin = Fluxxor.FluxMixin(React);
@@ -18,17 +20,19 @@ var FlowDogeApp = React.createClass({
     },
 
     render: function() {
-    
+
+        var brand = ([<img className="doge" src={require("../stuff/doge.png")} alt="Flowdoge" />, 'Flowdoge!']);
+
         return (
             
-            <Grid>
+            <div>
+                <Navbar fixedTop={true} brand={brand}>
+                </Navbar>
 
-                <header>
-                    <h1><img src={require('../stuff/doge.png')} />Flowdoge</h1>
-                </header>
-
-                <RouteHandler />
-            </Grid>
+                <Grid>
+                    <RouteHandler {...this.props}/>
+                </Grid>
+            </div>
         );
     }
 

@@ -13,6 +13,7 @@ var Thread = React.createClass({
                     return (
                         <div className="message">
                             <strong>{m.nick}</strong>: {m.message}
+                            <span className="postDate">{m.postDate}</span>
                         </div>
                     );
                 }.bind(this)).toArray()}

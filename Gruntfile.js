@@ -93,13 +93,13 @@ module.exports = function (grunt) {
             watch: false,
             keepalive: false,
 
-            options: {
+        
                 output: {
                     path: "web",
                     publicPath: "/",
                     filename: "app.[hash].js",
-                }
-            },
+                },
+        
 
             plugins: [
                 new webpack.optimize.UglifyJsPlugin({

@@ -6,29 +6,21 @@
 
 body {
     background-color: rgb(255,255,255);
+    margin-top: 75px;
 }
 
-header {
-    
-    h1 {
-        font-weight: bold;
-    }
 
-    margin: 0 0 1rem 0;
+img.doge {
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    margin-right: 2rem;
+    transition: all 1s;
 
-    img {
-        height: 100px;
-        width: 100px;
-        display: inline-block;
-        margin-right: 2rem;
-        transition: all 1s;
-    }
-
-    img:hover {
+    &:hover {
         transform: rotate(-45deg);
         transition: all 1s;
     }
-
 }
 
 .users {
@@ -71,6 +63,17 @@ header {
         padding: @padding;
 
         background-color: #CCC;
+
+        position: relative;
+
+        .postDate {
+            position: absolute;
+            font-size: x-small;
+            right: 0;
+            bottom: 0;
+            padding: 2px;
+            opacity: .33;
+        }
 
     }
 }
